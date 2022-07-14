@@ -36,7 +36,10 @@ usethis::use_mit_license("Mike Nanos")
 # > update description file manually
 
 # add pipe
-usethis::use_pipe()
+# usethis::use_pipe()
+
+# use tidy evaluation
+usethis::use_tidy_eval()
 
 # document and run first check
 devtools::document()
@@ -55,50 +58,29 @@ usethis::use_r("utils")
 # usethis::use_data_raw("")
 
 
-## misc functions ----
-usethis::use_r("between2")
-usethis::use_r("cite_by_doi")
-usethis::use_r("copy_df")
-usethis::use_r("cran_pkgs")
-usethis::use_r("lookup")
-usethis::use_r("not_in")
-usethis::use_r("r_data")
-usethis::use_r("r_resources")
-usethis::use_r("seq_range")
-usethis::use_r("use_browser")
+## utility functions ----
+# usethis::use_r("")
 
-## probability functions ----
-usethis::use_r("beta_a_b")
-usethis::use_r("gamma_a_b")
+## bricklink functions ----
+usethis::use_r("bricklink_price_guide")
 
-## spatial functions ----
-usethis::use_r("geocode")
-usethis::use_r("st_drop")
-usethis::use_r("st_erase")
-usethis::use_r("tibble_to_sf")
-
-## formatting and viz functions ----
-usethis::use_r("as_href")
-usethis::use_r("colours")
-usethis::use_r("get_bin_width")
-usethis::use_r("plot_theme")
-usethis::use_r("scrape_pal")
-usethis::use_r("theme_mn")
-usethis::use_r("today")
 
 # document functions
 # > insert roxygen skeleton
 devtools::document()
 
 # specify package dependencies
-usethis::use_package("broom")
 usethis::use_package("dplyr")
-usethis::use_package("reactablefmtr")
-usethis::use_package("here")
-usethis::use_package("httr")
+usethis::use_package("glue")
+usethis::use_package("lubridate")
+usethis::use_package("purrr")
+usethis::use_package("readr")
 usethis::use_package("rlang")
-usethis::use_package("stplanr")
+usethis::use_package("rvest")
+usethis::use_package("stringr")
 usethis::use_package("tibble")
+usethis::use_package("tidyr")
+
 
 # check build
 devtools::check()
