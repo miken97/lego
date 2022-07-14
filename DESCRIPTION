@@ -14,13 +14,17 @@ BugReports: https://github.com/miken97/lego/issues
 Imports: 
     dplyr,
     glue,
+    janitor,
     lubridate,
+    naniar,
     purrr,
     readr,
     rlang (>= 0.4.11),
     rvest,
+    snakecase,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    tidyselect
 Suggests: 
     roxygen2

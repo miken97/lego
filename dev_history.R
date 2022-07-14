@@ -63,6 +63,7 @@ usethis::use_r("utils")
 
 ## bricklink functions ----
 usethis::use_r("bricklink_price_guide")
+usethis::use_r("bricklink_colour_guide")
 
 
 # document functions
@@ -72,14 +73,18 @@ devtools::document()
 # specify package dependencies
 usethis::use_package("dplyr")
 usethis::use_package("glue")
+usethis::use_package("janitor")
 usethis::use_package("lubridate")
+usethis::use_package("naniar")
 usethis::use_package("purrr")
 usethis::use_package("readr")
 usethis::use_package("rlang")
 usethis::use_package("rvest")
+usethis::use_package("snakecase")
 usethis::use_package("stringr")
 usethis::use_package("tibble")
 usethis::use_package("tidyr")
+usethis::use_package("tidyselect")
 
 
 # check build
