@@ -69,6 +69,9 @@ usethis::use_r("blink_colour_guide")
 usethis::use_r("bset_import_inventory")
 usethis::use_r("bset_set_themes")
 
+## ebay functions ----
+# usethis::use_r("ebay_sold_listings")
+
 
 # document functions
 # > insert roxygen skeleton

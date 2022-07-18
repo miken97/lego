@@ -13,7 +13,8 @@ lego_urls <- c(
 forex <- function(currency = "CAD") {
 
   priceR::exchange_rate_latest(currency = currency) |>
-    tibble::as_tibble()
+    tibble::as_tibble() |>
+    dplyr::rename(one_cad_equiv = .data[["one_cad_is_equivalent_to"]])
 
 }
 

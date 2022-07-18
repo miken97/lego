@@ -57,9 +57,9 @@ bset_import_sets_inventory <- function(f_path = "local") {
     janitor::clean_names() |>
     dplyr::transmute(
       set_id = .data[["number"]],
+      .data[["set_name"]],
       .data[["theme"]],
       sub_theme = .data[["subtheme"]],
-      .data[["set_name"]],
       .data[["notes"]],
       .data[["year"]],
       .data[["pieces"]],
@@ -91,7 +91,5 @@ bset_import_sets_inventory <- function(f_path = "local") {
     tidyr::nest(dimensions = tidyselect::all_of(c("width_cm", "height_cm", "depth_cm", "weight_kg"))) |>
     dplyr::relocate(.data[["dimensions"]], .after = .data[["priority"]]) |>
     tidyr::nest(product_ids = c(.data[["ean"]], .data[["upc"]]))
-
-  inventory_raw
 
 }
