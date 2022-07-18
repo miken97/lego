@@ -10,11 +10,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' bricklink_colour_guide()
+#' blink_colour_guide()
 #' }
-bricklink_colour_guide <- function() {
+blink_colour_guide <- function() {
 
-  bricklink_colour_guide_url <- "https://www.bricklink.com/catalogColors.asp?utm_content=subnav"
+  blink_colour_guide_url <- paste0(lego_urls[["bricklink"]], "/catalogColors.asp?utm_content=subnav")
 
   lego_colours <- c(
     "Solid",
@@ -39,7 +39,7 @@ bricklink_colour_guide <- function() {
     "colour_timeline"
   )
 
-  html_raw <- rvest::read_html(bricklink_colour_guide_url) |>
+  html_raw <- rvest::read_html(blink_colour_guide_url) |>
     rvest::html_table()
 
   tbl_list_raw <- html_raw |>

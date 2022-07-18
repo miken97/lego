@@ -59,11 +59,15 @@ usethis::use_r("utils")
 
 
 ## utility functions ----
-# usethis::use_r("")
+usethis::use_r("utils")
 
 ## bricklink functions ----
-usethis::use_r("bricklink_price_guide")
-usethis::use_r("bricklink_colour_guide")
+usethis::use_r("blink_price_guide")
+usethis::use_r("blink_colour_guide")
+
+## brickset functions ----
+usethis::use_r("bset_import_inventory")
+usethis::use_r("bset_set_themes")
 
 
 # document functions
@@ -76,6 +80,7 @@ usethis::use_package("glue")
 usethis::use_package("janitor")
 usethis::use_package("lubridate")
 usethis::use_package("naniar")
+usethis::use_package("priceR")
 usethis::use_package("purrr")
 usethis::use_package("readr")
 usethis::use_package("rlang")

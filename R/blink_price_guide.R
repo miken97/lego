@@ -15,16 +15,16 @@
 #' \dontrun{
 #' bricklink_price_guide(set_id = 10255)
 #' }
-bricklink_price_guide <- function(set_id, url_only = FALSE) {
+blink_price_guide <- function(set_id, url_only = FALSE) {
 
-  bricklink_set_url <- glue::glue("https://www.bricklink.com/catalogPG.asp?S={set_id}-1&ColorID=0")
+  blink_set_url <- glue::glue('{lego_urls[["bricklink"]]}/catalogPG.asp?S={set_id}-1&ColorID=0')
 
   if (url_only) {
-    bricklink_set_url
+    blink_set_url
 
   } else {
 
-    raw_html <- rvest::read_html(bricklink_set_url)
+    raw_html <- rvest::read_html(blink_set_url)
 
     # set-up output list
     output_list <- list(
