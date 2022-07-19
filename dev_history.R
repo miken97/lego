@@ -61,13 +61,16 @@ usethis::use_r("utils")
 ## utility functions ----
 usethis::use_r("utils")
 
+## lego.com functions ----
+usethis::use_r("lego-scrape_lego")
+
 ## bricklink functions ----
-usethis::use_r("blink_price_guide")
-usethis::use_r("blink_colour_guide")
+usethis::use_r("bricklink-blink_price_guide")
+usethis::use_r("bricklink-blink_colour_guide")
 
 ## brickset functions ----
-usethis::use_r("bset_import_inventory")
-usethis::use_r("bset_set_themes")
+usethis::use_r("brickset-bset_import_inventory")
+usethis::use_r("brickset-bset_set_themes")
 
 ## ebay functions ----
 # usethis::use_r("ebay_sold_listings")
