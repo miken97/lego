@@ -80,10 +80,10 @@ devtools::document()
 # specify package dependencies
 usethis::use_package("dplyr")
 usethis::use_package("glue")
+usethis::use_package("httr2")
 usethis::use_package("janitor")
 usethis::use_package("lubridate")
 usethis::use_package("naniar")
-usethis::use_package("priceR")
 usethis::use_package("purrr")
 usethis::use_package("readr")
 usethis::use_package("rlang")
@@ -93,6 +93,7 @@ usethis::use_package("stringr")
 usethis::use_package("tibble")
 usethis::use_package("tidyr")
 usethis::use_package("tidyselect")
+usethis::use_package("vctrs")
 
 
 # check build

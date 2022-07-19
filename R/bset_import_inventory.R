@@ -49,6 +49,13 @@ bset_import_sets_inventory <- function(f_path = "local") {
 
   inventory_path <- paste0(f_path, "/Brickset-MySets-all.csv")
 
+  cad_to_x <- forex_exchange_rate(
+    from = "CAD",
+    amount = 1,
+    to = c("USD", "EUR", "GBP"),
+    as_df = FALSE
+  )
+
   inventory_raw <- readr::read_csv(
     file = inventory_path,
     col_names = TRUE,
@@ -68,26 +75,47 @@ bset_import_sets_inventory <- function(f_path = "local") {
       .data[["exit_date"]],
       .data[["rrp_cad"]],
       .data[["rrp_usd"]],
-      .data[["rrp_gbp"]],
       .data[["rrp_eur"]],
-      width_cm = .data[["width"]],
-      height_cm = .data[["height"]],
-      depth_cm = .data[["depth"]],
-      weight_kg = .data[["weight"]],
+      .data[["rrp_gbp"]],
       qty_own = .data[["qty_owned"]],
       qty_new = .data[["qty_owned_new"]],
       qty_used = .data[["qty_owned_used"]],
       .data[["wanted"]],
       qty_want = .data[["qty_wanted"]],
       .data[["priority"]],
+      width_cm = .data[["width"]],
+      height_cm = .data[["height"]],
+      depth_cm = .data[["depth"]],
+      weight_kg = .data[["weight"]],
+      value_new_cad = round(.data[["value_new_usd"]] * (1 / cad_to_x[["USD"]]), 2),
+      value_used_cad = round(.data[["value_used_usd"]] * (1 / cad_to_x[["USD"]]), 2),
+      rrp_usd_cad_equiv = dplyr::if_else(
+        !is.na(.data[["rrp_usd"]]),
+        round(.data[["rrp_usd"]] * (1 / cad_to_x[["USD"]]), 2),
+        .data[["rrp_usd"]]
+      ),
+      rrp_eur_cad_equiv = dplyr::if_else(
+        !is.na(.data[["rrp_eur"]]),
+        round(.data[["rrp_eur"]] * (1 / cad_to_x[["EUR"]]), 2),
+        .data[["rrp_eur"]]
+      ),
+      rrp_gbp_cad_equiv = dplyr::if_else(
+        !is.na(.data[["rrp_gbp"]]),
+        round(.data[["rrp_gbp"]] * (1 / cad_to_x[["GBP"]]), 2),
+        .data[["rrp_gbp"]]
+      ),
       .data[["value_new_usd"]],
       .data[["value_used_usd"]],
+      growth_rate_new = round((.data[["value_new_usd"]] - .data[["rrp_usd"]]) / .data[["rrp_usd"]], 4),
+      growth_rate_used = round((.data[["value_used_usd"]] - .data[["rrp_usd"]]) / .data[["rrp_usd"]], 4),
       .data[["ean"]],
       .data[["upc"]]
     )
 
   inventory_raw |>
     dplyr::mutate(dplyr::across(dplyr::contains("date"), ~as.Date(.x, format = "%d/%m/%Y"))) |>
+    tidyr::nest(rrp_cad_equiv = tidyselect::all_of(c("rrp_usd_cad_equiv", "rrp_eur_cad_equiv", "rrp_gbp_cad_equiv"))) |>
+    dplyr::relocate(.data[["rrp_cad_equiv"]], .after = .data[["rrp_gbp"]]) |>
     tidyr::nest(dimensions = tidyselect::all_of(c("width_cm", "height_cm", "depth_cm", "weight_kg"))) |>
     dplyr::relocate(.data[["dimensions"]], .after = .data[["priority"]]) |>
     tidyr::nest(product_ids = c(.data[["ean"]], .data[["upc"]]))
